@@ -6,11 +6,11 @@
 You have been contracted by Coo Coo Computing Challengers to take a concept, Click Counter Calamity, from the drawing board to the browser. Coo Coo Computing Challengers is a company that spends more time creating alliterative puns than actual writing software and they need our help.  They want you to create a webpage that keeps track of user clicks, but they have some strange requirements for _'Clicking Companions'_ and _'Collective Culmination Compounders'_.  They have a list of requirements for us, but they are too busy trying to change the words in their company's mission statement to words that start with the letter 'C' exclusively to give us guidance on how to implement these requirements.
 
 ## The Application Requirements
-- [ ] You must create a website that tracks the amount of times the clicking button has been clicked.
-    - [ ] Create a button in the browser to click.
+- [X] You must create a website that tracks the amount of times the clicking button has been clicked.
+    - [X] Create a button in the browser to click.
     - [ ] Create a section on the page that interacts with the _'Clicking Companions'_.
       - [ ] Displays the amount of _Clicking Companions_ purchased.
-      - [ ] Provides a button to purchase _Clicking Companions_.
+      - [X] Provides a button to purchase _Clicking Companions_.
       - [ ] Button is disabled when you do not have enough clicks to buy a _Clicking Companion_.
     - [ ] Create a section on the page that interacts with the _'Collective Culmination Compounder'_.
       - [ ] Displays the amount of _Collective Culmination Compounder_ purchased.

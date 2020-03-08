@@ -26,6 +26,10 @@ const newApp = new ButtonApp();
 const buddyButton = document.getElementById("buddy");
 const button = document.getElementById("button");
 const compounder = document.getElementById("compounder");
+const reset = document.getElementById("RESET");
+const burger = document.getElementById("burger");
+var menuIsOpen = false;
+var textForMenu = document.getElementById("menulinks");
 
 button.addEventListener('click',function(){
     newApp.clickCount += (1 + (newApp.compounderCount * .2));
@@ -78,8 +82,42 @@ compounder.addEventListener('click',function(){
 
 });
 
+reset.addEventListener('click',function(){
+    newApp.clickCount = 0;
+    newApp.buddyCount = 0;
+    newApp.compounderCount = 0;
+
+    newApp.buddyCost = 100;
+    newApp.compounderCost = 10;
+
+    document.getElementById("compounderText").innerHTML = `${newApp.getCompounderCount()} Button Bolsterers. Buy another for ${newApp.compounderCost}`;
+    document.getElementById("bashButtonText").innerHTML = `${newApp.getClickCount()}`;
+    document.getElementById("buddyButtonText").innerHTML = `${newApp.getBuddyCount()} buddies. Buy another for ${newApp.buddyCost}`;
+});
+
+const menuOpenOrClose = function(menuBool){
+
+    menuBool = menuIsOpen;
+    
+    if(!menuBool){
+        textForMenu.innerHTML = `<A HREF = "aboutme.html">About Me</A> <A HREF = "http://orteil.dashnet.org/cookieclicker/">The Original Cookie Clicker</A>`
+        menuIsOpen = true;
+    };
+
+    if(menuBool){
+        textForMenu.innerHTML = ``
+        menuIsOpen = false;    
+    };
+    
+    console.log("You clicked the burger!")
+
+    };
+
+burger.addEventListener('click',menuOpenOrClose);
 
 setInterval(function(){
     newApp.clickCount += newApp.buddyCount;
     document.getElementById("bashButtonText").innerHTML = `${newApp.getClickCount()}`;},
     1000);
+
+   

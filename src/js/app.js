@@ -7,6 +7,7 @@ class ButtonApp {
         this.buddyCost = 100;
 
         this.compounderCount = 0;
+        this.compounderCost = 10;
 
         this.bashButtonText = document.getElementById("bashButtonText");
         this.buddyButtonText = document.getElementById("buddyButtonText");
@@ -18,18 +19,6 @@ class ButtonApp {
     getBuddyString(){return `You have ${this.getBuddyCount()} button buddies.`}
     getCompounderCount(){return this.compounderCount}
 
-    compounderTrigger = function(){
-        if(this.clickCount >= 500){
-            this.compounderCount += 1;
-            this.clickCount -= 500;
-            console.log(`You have ${this.compounderCount} Button Bolsterers.`);
-        };
-        if (this.clickCount < 500){
-            compounder.disabled = true;
-        }
-        document.getElementById("compounderText").innerHTML = `${this.getCompounderCount()}`;
-    }
-
 };
 
 const newApp = new ButtonApp();
@@ -39,14 +28,14 @@ const button = document.getElementById("button");
 const compounder = document.getElementById("compounder");
 
 button.addEventListener('click',function(){
-    newApp.clickCount += (1 + (newApp.buddyCount + (newApp.compounderCount * 5)));
+    newApp.clickCount += (1 + (newApp.compounderCount * .2));
 
     console.log(newApp.clickCount);
 
-    if(newApp.clickCount < 100){buddyButton.disabled = true;};
+    if(newApp.clickCount < newApp.buddyCost){buddyButton.disabled = true;};
     if (newApp.clickCount < 500){compounder.disabled = true;};
-    if (newApp.clickCount >= 100){buddyButton.disabled = false;};
-    if (newApp.clickCount >= 500){compounder.disabled = false;};
+    if (newApp.clickCount >= newApp.buddyCost){buddyButton.disabled = false;};
+    if (newApp.clickCount >= newApp.compounderCost){compounder.disabled = false;};
 
     document.getElementById("bashButtonText").innerHTML = `${newApp.getClickCount()}`;
 
@@ -56,16 +45,41 @@ buddyButton.addEventListener('click',function(){
     
     if(newApp.clickCount >= newApp.buddyCost){
         newApp.buddyCount += 1;
-        newApp.clickCount -= 100;
+        newApp.clickCount -= newApp.buddyCost;
         newApp.buddyCost *= 1.2;
         newApp.buddyCost = (Math.floor(newApp.buddyCost));
         console.log(`You have ${newApp.buddyCount} Button Buddies, and buddies now cost ${newApp.buddyCost}.`);
     };
 
-if (newApp.clickCount <= newApp.buddyCost){buddyButton.disabled = true;};
-if (newApp.clickCount < 500){compounder.disabled = true;};
-document.getElementById("bashButtonText").innerHTML = `${newApp.getClickCount()}`;
-document.getElementById("buddyButtonText").innerHTML = `${newApp.getBuddyCount()}`;
-});
+    if (newApp.clickCount <= newApp.buddyCost){buddyButton.disabled = true;};
+    if (newApp.clickCount < newApp.compounderCost){compounder.disabled = true;};
+    document.getElementById("bashButtonText").innerHTML = `${newApp.getClickCount()}`;
+    document.getElementById("buddyButtonText").innerHTML = `${newApp.getBuddyCount()} buddies. Buy another for ${newApp.buddyCost}`;
+    });
 
 buddyButton.disabled = true;
+compounder.disabled = true;
+
+compounder.addEventListener('click',function(){
+
+    if(newApp.clickCount >= newApp.compounderCost){
+        newApp.compounderCount += 1;
+        newApp.clickCount -= newApp.compounderCost;
+        newApp.compounderCost *= 1.2;
+        newApp.compounderCost = Math.floor(newApp.compounderCost);
+        console.log(`You have ${newApp.compounderCount} Button Bolsterers. Buy another for ${newApp.compounderCost}`);
+    };
+
+    if (newApp.clickCount < newApp.compounderCost){
+        compounder.disabled = true;
+    }
+
+    document.getElementById("compounderText").innerHTML = `${newApp.getCompounderCount()} Button Bolsterers. Buy another for ${newApp.compounderCost}`;
+
+});
+
+
+setInterval(function(){
+    newApp.clickCount += newApp.buddyCount;
+    document.getElementById("bashButtonText").innerHTML = `${newApp.getClickCount()}`;},
+    1000);

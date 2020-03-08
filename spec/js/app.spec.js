@@ -22,6 +22,6 @@ describe("Suite to return correct description string", function(){
     })
 
     it("The getBuddyNumber function should return total purchased button buddies", function(){
-        expect(underTest.getBuddyString()).toBe(`You have ${underTest.getBuddyCount()} button buddies.`);
+        expect(underTest.getBuddyString()).toBe(`You have 0 button buddies.`);
     });
 });

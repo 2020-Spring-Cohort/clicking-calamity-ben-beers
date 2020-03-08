@@ -15,10 +15,10 @@ class ButtonApp {
 
     clickTrigger = function(){
         this.clickCount += (1 + (this.buddyCount));
-        console.log(this.getClickCount());
-    
-        if(this.clickCount < 100){buddyButton.disabled = true;}
 
+        console.log(this.getClickCount());
+
+        if(this.clickCount < 100){buddyButton.disabled = true;}
         if (this.clickCount >= 100){
             buddyButton.disabled = false;
         document.getElementById("bashButtonText").innerHTML = `${this.getClickCount()}`;
@@ -27,23 +27,26 @@ class ButtonApp {
 };
 
 buddyTrigger = function(){
+    
     if(this.clickCount >= 100){
         this.buddyCount += 1;
         this.clickCount -= 100;
         console.log(`You have ${this.buddyCount} Button Buddies.`);
     };
+
     if (this.clickCount <= 100){
         buddyButton.disabled = true;
     };
 };
 
-}
+};
 
 const newApp = new ButtonApp();
 
 const buddyButton = document.getElementById("buddy");
 const button = document.getElementById("button");
-button.addEventListener('click',newApp.clickTrigger);
 
+button.addEventListener('click',newApp.clickTrigger());
 buddyButton.onclick = newApp.buddyTrigger();
+
 buddyButton.disabled = false;

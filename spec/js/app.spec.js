@@ -1,6 +1,12 @@
 // ./spec/js/app.js
 //TESTS GO HERE
 
+describe("Dummy test", function(){
+    underTest = new ButtonApp();
+    it("returns 1", function(){
+        expect(underTest.test).toBe(1);
+    });
+        });
 
 describe("Suite to check out button click add thingy", function(){
     beforeEach(() => {
@@ -9,7 +15,7 @@ describe("Suite to check out button click add thingy", function(){
  
     it("Clicking button should increase value by 1", function(){
        
-       underTest.clickTrigger();
+       clickTrigger();
        expect(underTest.getClickCount()).toBe(1);
 
     });

@@ -12,6 +12,8 @@ class ButtonApp {
         this.bashButtonText = document.getElementById("bashButtonText");
         this.buddyButtonText = document.getElementById("buddyButtonText");
 
+        this.test = 1;
+
     }
 
     getClickCount(){return this.clickCount}
@@ -19,7 +21,7 @@ class ButtonApp {
     getBuddyString(){return `You have ${this.getBuddyCount()} button buddies.`}
     getCompounderCount(){return this.compounderCount}
 
-};
+}
 
 const newApp = new ButtonApp();
 
@@ -119,5 +121,3 @@ setInterval(function(){
     newApp.clickCount += newApp.buddyCount;
     document.getElementById("bashButtonText").innerHTML = `${newApp.getClickCount()}`;},
     1000);
-
-   
